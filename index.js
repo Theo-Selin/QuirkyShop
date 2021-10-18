@@ -140,7 +140,7 @@ function addingToCart(item) {
     printTotalPrice()
     printCartTitle()
     printProducts()
-}
 
-//used for presentation purposes
-console.log(customer.cart)
+    //used for presentation purposes
+    console.log(customer.cart)
+}
