@@ -3,10 +3,10 @@
 
 const api = "https://mock-data-api.firebaseio.com/webb21/products.json"
 
-//controls div where products are being appended
+//declares variable where products are appended
 const productContainer = document.getElementById("root")
 
-//controls filter functions
+//declares filtering tool variables
 const filterInput = document.getElementById("filterInput")
 const filterExecute = document.getElementById("filterExecute")
 filterExecute.addEventListener("click", function() {
@@ -14,7 +14,7 @@ filterExecute.addEventListener("click", function() {
     getDataFromApi()
 })
 
-// functions that collects product information from api
+// function that collects product information from api
 function getDataFromApi() {
     fetch(api)
     .then(res => res.json())
@@ -32,15 +32,14 @@ function condition(item) {
     return item.rating >= filterInput.value
 }
 
-// functions for rendering data in root
+// functions for rendering the filtered data in root
 function renderData(filteredData) {
     filteredData.forEach(item => {
         renderDataItems(item)
     })
 }
 
-/* Another solution without filter function
-    requires a default value on filterInput */
+/* Another solution without filter function */
 
 // function renderData(data) {
 //     data.forEach(item => {
@@ -50,6 +49,7 @@ function renderData(filteredData) {
 //     })
 // }
 
+//creates and appends elements in root
 function renderDataItems(item) {
     const dataWrapper = document.createElement("div")
 
@@ -63,7 +63,7 @@ function renderDataItems(item) {
     imageElement.src = item.images[0].src.small
     imageElement.alt = item.images[0].alt
     imageElement.addEventListener("click", function() {
-        addingToCartButton(item)
+        addingToCart(item)
     })
 
     const priceElement = document.createElement("p")
@@ -77,7 +77,7 @@ function renderDataItems(item) {
 
     const buyButton = document.createElement("button")
     buyButton.addEventListener("click", function() {
-        addingToCartButton(item)
+        addingToCart(item)
     })
     buyButton.innerHTML = `Add to cart`
 
@@ -91,9 +91,10 @@ function renderDataItems(item) {
 
     productContainer.appendChild(dataWrapper)
 }
+//runs code to print page
 getDataFromApi()
 
-//customer purchase information
+//creates user class and methods
 class Customer {
     constructor() {
         this.cart = []
@@ -134,7 +135,7 @@ function printProducts() {
 }
 
 //adds product to customer cart by pressing button
-function addingToCartButton(item) {
+function addingToCart(item) {
     customer.addProduct(item)
     printTotalPrice()
     printCartTitle()
