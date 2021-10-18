@@ -53,7 +53,7 @@ function renderData(filteredData) {
 function renderDataItems(item) {
     const dataWrapper = document.createElement("div")
 
-    const titleElement = document.createElement("h2")
+    const titleElement = document.createElement("h3")
     titleElement.innerHTML = item.name
 
     const descriptionElement = document.createElement("p")
